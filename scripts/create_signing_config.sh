@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cat <<EOS > signingConfigRelease.gradle
-signingConfig {
+signingConfigs {
     release {
         storeFile file("helloworld.jks")
         storePassword "$STORE_PASSWORD"
