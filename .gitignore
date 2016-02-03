@@ -10,3 +10,5 @@
 .bundle
 vendor/bundle
 *.apk
+*.jks
+signingConfigRelease.gradle
