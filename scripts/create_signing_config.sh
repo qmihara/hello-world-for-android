@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cat <<EOS > signingConfigRelease.gradle2
+cat <<EOS > signingConfigRelease.gradle
 signingConfig {
     release {
         storeFile file("helloworld.jks")
