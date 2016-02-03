@@ -1,0 +1,12 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+/metadata
+*.p12
+.bundle
+vendor/bundle
+*.apk
