@@ -28,7 +28,18 @@ before_script:
   - make setup
 script:
   - ./gradlew connectedAndroidTest
-after_success:
-  - if [ ${TRAVIS_BRANCH} = master ] && [ ${TRAVIS_PULL_REQUEST} = false ]; then make deploy; fi
 notifications:
   email: false
+before_deploy:
+  - make release.zip
+deploy:
+  provider: releases
+  api_key:
+    secure: FAnfkTsZhpZjOxu7YOnKTMwQUvQ5nkPCE/TwU4upAWkv7y2yLGJ3KvZuAVyLS9jplggLR9oOk7Qo34sxpdUjzWs15VHvPS6tk8e/07SAU6Um+e8oaymDvWzRBJr3ArM2Bq5x/ktGenz64A4agMjLMAX2lFMvjpgGaGdD9Bbmkjuxurw2JMblMUEAWc55GHJb4WIRNYt7+FY2W18Pf94KkUBSVVBaf5xgkrUueQlXIGXSBrYzXeGIR6xd7Eyp1PWmzTpK3j0AfKy/VRQimtDZb/dMYzRJ2LiSm+J1FC5JKCR1MarWwpSLAa/IMbsRozJmXKZAF3fVQ1ZPoPuezMH1ETTSriiJbUT+mthvw3uVWR1Z3fZPksU0N3jshkcXEnIAAGb5YI0MUU1PrX1g0ToV7glAljU7BPvc9eH4ZipBUR9FPGTWJrKIyDB0PlEe+HbOJ/3ylyckIfMUj/xwZBAwncOGBID0xB00WjJrPXCQCRvEuHTDOXdYiiWw9IEZesxt/QwXjhA187N00c5Nup9NPMnP0hCD4XD1HIxxzSFr3I02gSL3kgVI+O8fi3WcpgtiCPlGs6gKW+Qx4LFm7NbtHXt5yHKXmML2dX7VmnSG9E4pmmaLSnNUBRKPf1cq0p4KcYWR+kp+oYk5jyvjvQNCuto7MKjOeVf9y1Ikosud/30=
+  file: release.zip
+  on:
+    repo: qmihara/hello-world-for-android
+    tags: true
+    all_branches: true
+after_deploy:
+  - make deploy2gp
