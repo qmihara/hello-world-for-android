@@ -6,12 +6,16 @@ apply from: '../signingConfigRelease.gradle', to: android
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
+    
+    def process = "git rev-list HEAD".execute() | "wc -l".execute()
+    process.waitFor()
+    def versionCodeFromGit = process.text.trim().toInteger()
 
     defaultConfig {
         applicationId "com.epohsoft.helloworld"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 3
+        versionCode versionCodeFromGit
         versionName "1.0.1"
     }
     buildTypes {
