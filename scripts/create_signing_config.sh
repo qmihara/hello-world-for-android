@@ -1,6 +1,7 @@
 #!/bin/sh
 
-cat <<EOS > signingConfigRelease.gradle
+if [ ! -e signingConfigRelease.gradle ]; then
+  cat <<EOS > signingConfigRelease.gradle
 signingConfigs {
     release {
         storeFile file("helloworld.jks")
@@ -10,3 +11,4 @@ signingConfigs {
     }
 }
 EOS
+fi
