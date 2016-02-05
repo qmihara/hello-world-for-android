@@ -28,6 +28,8 @@ before_script:
   - make setup
 script:
   - ./gradlew connectedAndroidTest
+after_success:
+  - echo "TAG: ${TRAVIS_TAG}"
 notifications:
   email: false
 before_deploy:
